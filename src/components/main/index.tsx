@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../utils/api";
 import Card, { CardProps } from "../card";
+import Header from "../header";
 
 function Main() {
   const [news, setNews] = useState({
@@ -34,30 +35,31 @@ function Main() {
     getProducts();
   }, [api.news]);
 
-  console.log(news);
-
   return (
-    <div className="mt-12 px-4">
-      <div className="w-full py-3">
-        <h2 className="text-gray-800 text-2xl font-bold">
-          <span className="inline-block h-5 border-l-3 border-red-600 mr-2"></span>
-          Articles
-        </h2>
+    <>
+      <Header />
+      <div className="mt-12 px-4">
+        <div className="w-full py-3">
+          <h2 className="text-gray-800 text-2xl font-bold">
+            <span className="inline-block h-5 border-l-3 border-red-600 mr-2"></span>
+            Articles
+          </h2>
+        </div>
+        <div className="flex flex-row flex-wrap -mx-3">
+          {news.data.length > 0 &&
+            news.data.map((item: CardProps) => (
+              <Card
+                key={item.publishedAt}
+                author={item.author}
+                description={item.description}
+                title={item.title}
+                urlToImage={item.urlToImage}
+                publishedAt={item.publishedAt}
+              />
+            ))}
+        </div>
       </div>
-      <div className="flex flex-row flex-wrap -mx-3">
-        {news.data.length > 0 &&
-          news.data.map((item: CardProps) => (
-            <Card
-              key={item.publishedAt}
-              author={item.author}
-              description={item.description}
-              title={item.title}
-              urlToImage={item.urlToImage}
-              publishedAt={item.publishedAt}
-            />
-          ))}
-      </div>
-    </div>
+    </>
   );
 }
 

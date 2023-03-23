@@ -28,6 +28,11 @@ function Card({ title, description, author, urlToImage }: CardProps) {
             <span className="inline-block h-3 border-l-2 border-red-600 mr-2"></span>
             {author}
           </a>
+          <div className="mt-2">
+            <button className="text-indigo-400 bg-stone-300 p-2">
+              Bookmark
+            </button>
+          </div>
         </div>
       </div>
     </div>
