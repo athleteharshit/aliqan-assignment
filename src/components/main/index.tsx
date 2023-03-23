@@ -47,7 +47,7 @@ function Main() {
           </h2>
         </div>
         <div className="flex flex-row flex-wrap -mx-3">
-          {news.data.length > 0 &&
+          {news?.data?.length > 0 &&
             news.data.map((item: CardProps) => (
               <Card
                 key={item.publishedAt}

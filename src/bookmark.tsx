@@ -22,8 +22,8 @@ function Bookmark() {
           </h2>
         </div>
         <div className="flex flex-row flex-wrap -mx-3">
-          {news.length > 0 &&
-            news.map((item: CardProps) => {
+          {news?.length > 0 &&
+            news?.map((item: CardProps) => {
               if (!item) return null;
               return (
                 <Card
