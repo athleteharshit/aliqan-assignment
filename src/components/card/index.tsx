@@ -6,7 +6,21 @@ export type CardProps = {
   publishedAt: string;
 };
 
-function Card({ title, description, author, urlToImage }: CardProps) {
+function Card({
+  title,
+  description,
+  author,
+  urlToImage,
+  publishedAt,
+}: CardProps) {
+  const handleBookmark = () => {
+    const data = { title, description, author, urlToImage, publishedAt };
+    const getBookmark = JSON.parse(localStorage.getItem("bookmark") || "");
+    if (getBookmark?.length < 0) return;
+    let newData = [...(getBookmark?.length > 0 && getBookmark), data];
+    localStorage.setItem("bookmark", JSON.stringify(newData));
+  };
+
   return (
     <div className="flex-shrink max-w-full w-full sm:w-1/3 px-3 pb-3 pt-3 sm:pt-0 border-b-2 sm:border-b-0 border-dotted border-gray-100">
       <div className="flex flex-row sm:block hover-img">
@@ -29,7 +43,10 @@ function Card({ title, description, author, urlToImage }: CardProps) {
             {author}
           </a>
           <div className="mt-2">
-            <button className="text-indigo-400 bg-stone-300 p-2">
+            <button
+              className="text-indigo-400 bg-stone-300 p-2"
+              onClick={handleBookmark}
+            >
               Bookmark
             </button>
           </div>

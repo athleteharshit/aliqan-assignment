@@ -33,6 +33,7 @@ function Main() {
 
   useEffect(() => {
     getProducts();
+    localStorage.setItem("bookmark", JSON.stringify([null]));
   }, [api.news]);
 
   return (
